@@ -1,0 +1,8 @@
+def shopsingle(request, pk):
+    product = Product.objects.get(id=pk)
+    carousel_products = Product.objects.exclude(id=pk).order_by('?')[:4]
+    context = {
+        'product': product,
+        'carousel_products': carousel_products,
+    }
+    return render(request, 'shopsingle.html', context)
